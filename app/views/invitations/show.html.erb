@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Subjects:</b>
+  <%= @invitation.subjects %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @invitation.body %>
+</p>
+
+<p>
+  <b>Contacts:</b>
+  <%= @invitation.contacts %>
+</p>
+
+
+<%= link_to 'Edit', edit_invitation_path(@invitation) %> |
+<%= link_to 'Back', invitations_path %>

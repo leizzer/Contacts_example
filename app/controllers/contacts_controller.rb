@@ -1,6 +1,5 @@
 class ContactsController < ApplicationController
-  # GET /contacts
-  # GET /contacts.xml
+  
   def index
     if params[:oauth_token].present?
       consumer = Contacts::Yahoo.deserialize(session[:consumer])
@@ -8,17 +7,17 @@ class ContactsController < ApplicationController
         @contacts = consumer.contacts
         respond_to do |wants|
           wants.html
-          wants.json { render :json => @contacts }
+          #wants.json { render :json => @contacts }
         end
       end
     else
-      redirect_to new_contact_url(:format => current_format)
+      redirect_to new_contact_url#(:format => current_format)
     end
   end
 
   def new
     consumer = Contacts::Yahoo.new
-    redirect_to consumer.authentication_url(contacts_url(:format => current_format))
+    redirect_to consumer.authentication_url(contacts_url)#:format => current_format
     session[:consumer] = consumer.serialize
   end
 

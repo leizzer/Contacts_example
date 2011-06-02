@@ -1,6 +1,10 @@
 Contacts::Application.routes.draw do
+  resources :invitations
+
   resources :contacts
-  root :to => "contacts#index"
+
+
+  root :to => "invitations#index"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

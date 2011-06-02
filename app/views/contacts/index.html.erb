@@ -1,1 +1,31 @@
-<%= @contacts.inspect %>
+<h2>Contacts</h2>
+<div class="contact-list" style="overflow: scroll">
+  <div>
+    <% @contacts.each do |c| %>
+      <%= label_tag c.name  %>
+      <p>
+        <%= check_box_tag c.name, c.email, :class => 'contact' %>
+        <%= c.email %>
+      </p>
+    <% end %>
+  </p>
+
+  <a id='add'>Add</a>
+</div>
+<script>
+  $("a#add").click(function(){
+    var emails = [];
+    $("input:checkbox[checked]").each(function(){
+      emails.push($(this).attr('value'));
+    });
+
+    var invitation_contacts = parent.$('#invitation_contacts');
+
+    if (invitation_contacts.val() == ""){
+      invitation_contacts.val(emails.join(', '));
+    }else{
+      invitation_contacts.val(emails.join(', ') + ', ' + invitation_contacts.val());
+    }
+    parent.$.fancybox.close()
+  });
+</script>
