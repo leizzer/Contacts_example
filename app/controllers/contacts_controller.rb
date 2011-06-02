@@ -7,17 +7,16 @@ class ContactsController < ApplicationController
         @contacts = consumer.contacts
         respond_to do |wants|
           wants.html
-          #wants.json { render :json => @contacts }
         end
       end
     else
-      redirect_to new_contact_url#(:format => current_format)
+      redirect_to new_contact_url
     end
   end
 
   def new
     consumer = Contacts::Yahoo.new
-    redirect_to consumer.authentication_url(contacts_url)#:format => current_format
+    redirect_to consumer.authentication_url(contacts_url)
     session[:consumer] = consumer.serialize
   end
 
